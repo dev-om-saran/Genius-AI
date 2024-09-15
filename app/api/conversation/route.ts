@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subsription";
 
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_API_KEY!);
 
 export async function POST(req: Request) {
   try {
