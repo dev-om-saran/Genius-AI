@@ -17,19 +17,9 @@ import Loader from "@/components/loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
-import {marked} from "marked"
 import { useProModal } from "@/hooks/use-pro-modal";
+import ReactMarkdown from "react-markdown";
 
-const MarkdownRenderer = ({ markdownText }) => {
-    // Convert Markdown to HTML
-    const getMarkdownText = () => {
-      return { __html: marked(markdownText) };
-    };
-  
-    return (
-      <div dangerouslySetInnerHTML={getMarkdownText()} />
-    );
-  };
 
 interface Message {
   role: string;
@@ -154,7 +144,9 @@ const ConversationPage = () => {
                 )}
                 >
                 {message.role ==='user' ? <UserAvatar/> : <BotAvatar />}
-                <MarkdownRenderer markdownText={message.content} />
+                <ReactMarkdown>
+                  {message.content}
+                </ReactMarkdown>
                 
               </div>
             ))}
